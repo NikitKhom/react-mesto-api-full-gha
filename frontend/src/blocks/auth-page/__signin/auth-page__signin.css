@@ -1,0 +1,12 @@
+.auth-page__signin {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    margin-top: 15px;
+}
+
+@media(max-width: 768px) {
+    .auth-page__signin {
+        margin-top: 20px;
+    }
+}

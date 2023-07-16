@@ -1,0 +1,28 @@
+.auth-form__input {
+    color: white;
+    display: block;
+    margin-bottom: 30px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    background-color: black;
+    border: 0px;
+    border-bottom: 2px solid #CCCCCC;
+    width: 358px;
+    padding-bottom: 7px;
+}
+
+@media(max-width: 768px) {
+    .auth-form__input {
+
+        margin-bottom: 30px;
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 17px;
+
+
+
+        width: 260px;
+        padding-bottom: 7px;
+    }
+}

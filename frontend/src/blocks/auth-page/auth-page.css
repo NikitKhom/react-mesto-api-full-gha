@@ -1,0 +1,6 @@
+.auth-page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 60px;
+}

@@ -1,0 +1,8 @@
+.profile__image{
+    width: 118px;
+    height: 118px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: inherit;
+    border: 1px solid black;
+}
