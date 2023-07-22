@@ -7,6 +7,7 @@ const NotFoundError = require('./errors/not-found-error');
 const router = require('./routes/index');
 const adminRouter = require('./routes/admin');
 const errorHandler = require('./middlewares/error-handler');
+const { requestLogger, errorLogger } = require('./middlewares/logger');
 
 const { DB_URL = 'mongodb://127.0.0.1:27017/mestodb' } = process.env;
 const app = express();
@@ -17,12 +18,13 @@ mongoose.connect(DB_URL, {
 }).then(() => {
   console.log('connected to db');
 });
-
+app.use(requestLogger);
 app.use(adminRouter);
 app.use(auth);
 app.use(router);
 app.use((req, res, next) => {
   next(new NotFoundError('Страница не найдена'));
 });
+app.use(errorLogger);
 app.use(errors());
 app.use(errorHandler);
