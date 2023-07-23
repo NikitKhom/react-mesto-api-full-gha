@@ -33,7 +33,7 @@ function Login(props) {
             onChange={handleChange}
             onSubmit={handleSubmit}
             formValue={formValue}
-            buttonText="Зарегистрироваться"/>
+            buttonText="Войти"/>
 	  </div>
 	)
 }

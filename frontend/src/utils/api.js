@@ -1,10 +1,9 @@
 class API {
-    constructor({baseUrl, headers}){
+    constructor({baseUrl}){
         this._baseUrl = baseUrl;
-        this._headers = headers;
     }
 
-    getUserInfo(){
+    getUserInfo(token){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me`, {
                 headers: this._headers
@@ -12,7 +11,7 @@ class API {
         )
     }
 
-    getCards(){
+    getCards(token){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards`, {
                 headers: this._headers
@@ -20,7 +19,7 @@ class API {
         )
     }
 
-    changeUserInfo({userName, userInfo}) {
+    changeUserInfo({userName, userInfo}, token) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me`, {
                 method: 'PATCH',
@@ -33,7 +32,7 @@ class API {
         )
     }
 
-    addCard({cardName, cardLink}) {
+    addCard({cardName, cardLink}, token) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards`, {
                 method: 'POST',
@@ -46,7 +45,7 @@ class API {
         )
     }
 
-    deleteCard(cardId){
+    deleteCard(cardId, token){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards/${cardId}`, {
                 method: 'DELETE',
@@ -55,7 +54,7 @@ class API {
         )
     }
 
-    changeLikeCardStatus(cardId, isLiked){
+    changeLikeCardStatus(cardId, isLiked, token){
         if (!isLiked) {
             return this._checkServerStatus(
                 fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
@@ -74,7 +73,7 @@ class API {
         }
     }
 
-    setUserAvatar(userAvatar) {
+    setUserAvatar(userAvatar, token) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me/avatar`, {
                 method: 'PATCH',
@@ -95,13 +94,17 @@ class API {
             return Promise.reject(`Ошибка: ${res.status}`);
         })
     }
+
+    setToken(token) {
+        this._headers = {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+        }
+    }
 }
 
+
 const api = new API({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-63',
-    headers: {
-        authorization: '36dd83f2-042c-49c6-87f3-0e8edbb54688',
-        'Content-Type': 'application/json'
-    }
+    baseUrl: 'http://localhost:3000',
 });
 export default api;

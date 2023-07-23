@@ -3,10 +3,9 @@ import React from "react";
 
 function Card(props) {
 
-    const currentUser = React.useContext(CurrentUserContext); 
-    const isOwn = props.card.owner._id === currentUser._id;  
+    const currentUser = React.useContext(CurrentUserContext);
+    const isOwn = props.card.owner._id === currentUser._id;
     const isLiked = props.card.likes.some(i => i._id === currentUser._id);
-
 
     function handleClick() {
         props.onCardClick(props.card);

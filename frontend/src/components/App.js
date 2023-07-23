@@ -25,7 +25,6 @@ function App() {
     const [selectedCard, setSelectedCard] = useState({name: '', link: ''});
     const [userEmail, setUserEmail] = useState('');
     
-    
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -37,18 +36,19 @@ function App() {
     function handleLoadMainPage() {
         Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userInfo, userCards]) => {
-                setCurrentUser(userInfo); 
-                setCards(userCards);
-        })
+                setCurrentUser(userInfo.data); 
+                setCards(userCards.data);
+        })  
         .catch(err => console.log(err));
     }
 
     function handleTokenCheck() {
+        
         if (localStorage.getItem('jwt')){
-            const jwt = localStorage.getItem('jwt');
-            auth.checkToken(jwt)
+            auth.checkToken(localStorage.getItem('jwt'))
             .then(res => {
                 if (res){
+                    api.setToken(localStorage.getItem('jwt'));
                     handleLoadMainPage();
                     setLoggedIn(true);
                     if (res.data) {
@@ -65,6 +65,7 @@ function App() {
         auth.authorize(password, email)
 		.then((data) => {
 			if (data.token){
+                api.setToken(data.token);
                 setLoggedIn(true);
                 handleLoadMainPage();
                 setUserEmail(email);
@@ -117,7 +118,7 @@ function App() {
     function handleUpdateUser(info) {
         api.changeUserInfo({userName: info.name, userInfo: info.about})
         .then(info => {
-            setCurrentUser(info);
+            setCurrentUser(info.data);
             closeAllPopups();
         })
         .catch(err => console.log(err));
@@ -126,7 +127,7 @@ function App() {
     function handleUpdateAvatar(avatar) {
         api.setUserAvatar(avatar)
         .then(info => {
-            setCurrentUser(info);
+            setCurrentUser(info.data);
             closeAllPopups();
         })
         .catch(err => console.log(err));

@@ -19,8 +19,7 @@ function NavBar(props) {
                     <ul className="navbar">
                         <li>{props.userEmail}</li>
                         <li><button className="navbar__link navbar__button_type_exit button" onClick={signOut}>Выйти</button></li>
-                    </ul>
-                    <button className="navbar__button_type_menu button" type="button"></button>
+                    </ul> 
                 </>
 
             }/>
