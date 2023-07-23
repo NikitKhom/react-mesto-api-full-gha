@@ -105,7 +105,6 @@ class API {
 
 
 const api = new API({
-    baseUrl: 'http://localhost:3000',
-    // baseUrl: 'https://api.nikitkhom.mesto.nomoredomains.xyz',
+    baseUrl: 'https://api.nikitkhom.mesto.nomoredomains.xyz',
 });
 export default api;
