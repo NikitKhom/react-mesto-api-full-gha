@@ -10,7 +10,6 @@ function Main(props) {
     const [userDescription, setUserDescription] = React.useState('');
     const [userAvatar, setUserAvatar] = React.useState('');
     const currentUser = React.useContext(CurrentUserContext);
-    console.log(props.cards);
     React.useEffect(() => {
         setUserAvatar(currentUser.avatar);
         setUserDescription(currentUser.about);
