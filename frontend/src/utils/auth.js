@@ -1,4 +1,5 @@
 const BASE_URL = 'http://localhost:3000';
+// const BASE_URL = 'https://api.nikitkhom.mesto.nomoredomains.xyz';
 
 export const register = (password, email) => {
    return checkServerStatus(

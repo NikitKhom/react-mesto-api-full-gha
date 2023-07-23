@@ -36,7 +36,8 @@ function App() {
     function handleLoadMainPage() {
         Promise.all([api.getUserInfo(), api.getCards()])
         .then(([userInfo, userCards]) => {
-                setCurrentUser(userInfo.data); 
+                setCurrentUser(userInfo.data);
+                userCards.data.reverse(); 
                 setCards(userCards.data);
         })  
         .catch(err => console.log(err));
@@ -93,7 +94,7 @@ function App() {
         const isLiked = card.likes.some(i => i._id === currentUser._id);
         api.changeLikeCardStatus(card._id, isLiked)
         .then((newCard) => {
-            setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
+            setCards((state) => state.map((c) => c._id === card._id ? newCard.data : c));
         })
         .catch(err => console.log(err));
     } 
@@ -109,7 +110,7 @@ function App() {
     function handleAddPlaceSubmit(card) {
         api.addCard(card)
         .then(newCard => {
-            setCards([newCard, ...cards]);
+            setCards([newCard.data, ...cards]);
             closeAllPopups();
         })
         .catch(err => console.log(err));

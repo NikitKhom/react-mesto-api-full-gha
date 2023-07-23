@@ -3,7 +3,7 @@ class API {
         this._baseUrl = baseUrl;
     }
 
-    getUserInfo(token){
+    getUserInfo(){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me`, {
                 headers: this._headers
@@ -11,7 +11,7 @@ class API {
         )
     }
 
-    getCards(token){
+    getCards(){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards`, {
                 headers: this._headers
@@ -19,7 +19,7 @@ class API {
         )
     }
 
-    changeUserInfo({userName, userInfo}, token) {
+    changeUserInfo({userName, userInfo}) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me`, {
                 method: 'PATCH',
@@ -32,7 +32,7 @@ class API {
         )
     }
 
-    addCard({cardName, cardLink}, token) {
+    addCard({cardName, cardLink}) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards`, {
                 method: 'POST',
@@ -45,7 +45,7 @@ class API {
         )
     }
 
-    deleteCard(cardId, token){
+    deleteCard(cardId){
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/cards/${cardId}`, {
                 method: 'DELETE',
@@ -54,7 +54,7 @@ class API {
         )
     }
 
-    changeLikeCardStatus(cardId, isLiked, token){
+    changeLikeCardStatus(cardId, isLiked){
         if (!isLiked) {
             return this._checkServerStatus(
                 fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
@@ -73,7 +73,7 @@ class API {
         }
     }
 
-    setUserAvatar(userAvatar, token) {
+    setUserAvatar(userAvatar) {
         return this._checkServerStatus(
             fetch(`${this._baseUrl}/users/me/avatar`, {
                 method: 'PATCH',
@@ -106,5 +106,6 @@ class API {
 
 const api = new API({
     baseUrl: 'http://localhost:3000',
+    // baseUrl: 'https://api.nikitkhom.mesto.nomoredomains.xyz',
 });
 export default api;
