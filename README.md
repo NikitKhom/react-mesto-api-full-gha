@@ -11,6 +11,6 @@
 
 IP-адрес 51.250.83.73
 
-Frontend https://api.nikitkhom.mesto.nomoredomains.xyz/
+Frontend https://nikitkhom.mesto.nomoredomains.xyz/ 
 
-Backend https://nikitkhom.mesto.nomoredomains.xyz/
+Backend https://api.nikitkhom.mesto.nomoredomains.xyz/
